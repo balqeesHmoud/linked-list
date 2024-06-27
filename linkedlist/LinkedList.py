@@ -1,9 +1,13 @@
-from Node import Node
+# LinkedList.py
+from .Node import Node
 
 class LinkedList:
     """A class representing a singly linked list."""
-    def __init__(self):
+    def __init__(self, values=None):
         self.head = None
+        if values is not None:
+            for value in values:
+                self.append(value)
 
     def __getitem__(self, index):
         """Retrieve the element at the specified index using the [] operator."""
@@ -12,7 +16,7 @@ class LinkedList:
 
         while current is not None:
             if count == index:
-                return current.data
+                return current.value
             current = current.next
             count += 1
 
@@ -29,21 +33,13 @@ class LinkedList:
 
         return count
 
-    def __init__(self, values=None):
-        """Initialize the linked list with optional initial values."""
-        self.head = None
-
-        if values is not None:
-            for value in values:
-                self.append(value)
-
     def __str__(self):
         """Return a string representation of the linked list."""
         elements = []
         current = self.head
 
         while current is not None:
-            elements.append(str(current.data))
+            elements.append(str(current.value))
             current = current.next
 
         return " -> ".join(elements)
